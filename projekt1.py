@@ -120,7 +120,36 @@ if __name__ == "__main__":
             wynik = fl2pl1992(f,l,args.a, args.e2,l0=radians(19), m0 = 0.9993)
             wyniki.append(wynik[2:])
             i += 1
-        print('FL2PL1992=',wyniki)    
+        print('FL2PL1992=',wyniki)   
+
+# brakująca funkcja
+def XYZ2neu(dX,X,Y,Z):
+        p = np.sqrt(X**2 + Y**2)
+        f = np.arctan(Z/(p * (1 - e2)))
+        Np = a / np.sqrt(1 - e2*np.sin(f)**2)
+        while True:
+            N = Np(f,a,e2)
+            h = p / np.cos(f) - N
+            fp = f
+            f = np.arctan(Z / (p * (1 - e2 * N / (N + h))))
+            if abs(fp - f) < (0.000001/206265):
+                break
+        l = np.arctan2(Y,X)
+        R = np.array([[-np.sin(f) * np.cos(l), -np.sin(l), np.cos(f) * np.cos(l)],
+                    [-np.sin(f) * np.sin(l),  np.cos(l), np.cos(f) * np.sin(l)],
+                    [np.cos(f), 0., np.sin(f)]])
+        R = Rneu(f,l)
+        return(R.T @ dX)
+def neu2saz(dx):
+        s = np.sqrt(dx @ dx)
+        alfa = np.arctan2(dx[1],dx[0])
+        z = np.arccos(dx[2]/s)
+        return(s,alfa,z)
+def saz2neu(s,alfa,z):
+        dneu = np.array([s * np.sin(z) * np.cos(alfa),
+                        s * np.sin(z) * np.sin(alfa),
+                        s * np.cos(z)])
+        return(dneu)
 
 def fl2pl2000(f,l,a,e2,ns ,m0= 0.999923):
     if ns == 5:
