@@ -123,7 +123,7 @@ if __name__ == "__main__":
         print('FL2PL1992=',wyniki)   
 
 # brakująca funkcja
-def XYZ2neu(dX,X,Y,Z):
+def XYZ2neu(dX,X,Y,Z,a,e2):
         p = np.sqrt(X**2 + Y**2)
         f = np.arctan(Z/(p * (1 - e2)))
         Np = a / np.sqrt(1 - e2*np.sin(f)**2)
@@ -138,7 +138,6 @@ def XYZ2neu(dX,X,Y,Z):
         R = np.array([[-np.sin(f) * np.cos(l), -np.sin(l), np.cos(f) * np.cos(l)],
                     [-np.sin(f) * np.sin(l),  np.cos(l), np.cos(f) * np.sin(l)],
                     [np.cos(f), 0., np.sin(f)]])
-        R = Rneu(f,l)
         return(R.T @ dX)
 def neu2saz(dx):
         s = np.sqrt(dx @ dx)
