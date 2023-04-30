@@ -158,10 +158,7 @@ class Transformacje:
                          Z0])
         XT = XYZ-XYZ0
         neu = np.linalg.inv(np.transpose(R)@R)@XT
-        n = neu[:,0]
-        e = neu[:,1]
-        u = neu[:,2]
-        return n, e, u
+        return neu
     
     def fl2pl1992(self, f, l, l0=radians(19), m0 = 0.9993):
         """
@@ -217,8 +214,6 @@ class Transformacje:
             [radiany] - szerokość geodezyjna
         lam: FLOAT
             [radiany] - długość geodezyjna
-        l0: FLOAT
-            [radiany] - południk środkowy
         m0: FLOAT
             skala na południku środkowym 
         ----
@@ -231,14 +226,21 @@ class Transformacje:
         +https://gis-support.pl/baza-wiedzy-2/podstawy-gis/uklady-wspolrzednych-w-praktyce/
         """
        
-        if l>=14.1400 and l<=16.5000:
+        if l<radians(14.1400) and l>radians(24.1600):
+            raise ValueError('Wartość l jest niepoprawna.')
+        elif l>=radians(14.1400) and l<=radians(16.5000):
             l0 = radians(15)
-        elif l>16.5000 and l<19.5000:
+        elif l>radians(16.5000) and l<radians(19.5000):
             l0 = radians(18)
-        elif l>=19.5000 and l<22.5000:
+        elif l>=radians(19.5000) and l<radians(22.5000):
             l0 = radians(21)
-        elif l>=22.5000 and l<=24.1600:
+        elif l>=radians(22.5000) and l<=radians(24.1600):
             l0 = radians(24)
+        else:
+            l0 = radians(24)
+            
+                
+            
         b2 = self.a**2*(1 - self.e2)
         ep2 = (self.a**2 - b2)/b2
         dl = l - l0
@@ -263,14 +265,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     transformacje = Transformacje()
-    dane = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(0,1,2))
+    dane = np.loadtxt(args.input, skiprows=1, delimiter=',', usecols=(0,1,2))
     if len(dane) == 0:
         print("Plik wejściowy jest pusty")
         exit()
     wyniki = []
     with open(args.input, 'r') as plik:
-        lines = plik.readlines()[4:]
-        i = 0
+        lines = plik.readlines()
+        i = 1
         wyniki = []
         while i < len(lines):
             X, Y, Z = [float(x) for x in lines[i].strip().split(',')[:3]]
@@ -287,17 +289,19 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     transformacje = Transformacje()
-
-    dane = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(6,7,8))
+    dane = np.loadtxt(args.input, skiprows=1, delimiter=',', usecols=(6,7,8))
     if len(dane) == 0:
         print("Plik wejściowy jest pusty")
         exit()
+    wyniki = []
     with open(args.input, 'r') as plik:
         lines = plik.readlines()
-        i = 0
+        print(lines)
+        i = 1
         wyniki = []
         while i < len(lines):
-            f, l, h = [float(x) for x in lines[i].strip().split(',')[5:]]
+            print(f"Debug lines: {lines}")
+            f, l, h = [float(x) for x in lines[i].strip().split(',')[5:8]]
             wynik1 = transformacje.flh2xyz(f, l, h)
             wyniki.append(wynik1)
             i += 1
@@ -311,7 +315,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     transformacje=Transformacje()
-    dane = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(0,1,2,3,4,5))
+    dane = np.loadtxt(args.input, skiprows=1, delimiter=',', usecols=(0,1,2,3,4,5))
     if len(dane) == 0:
         print("Plik wejściowy jest pusty")
         exit()
@@ -333,22 +337,22 @@ if __name__ == "__main__":
     parser.add_argument('--input', type=str, default='dane.txt')
     parser.add_argument('--model', type=str, default="wgs84", help='Model elipsoidy:"wgs84", "grs80", "kras"')
     args = parser.parse_args()
-    FL = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(6,7))
+    
     
     transformacje = Transformacje()
 
-    dane = np.loadtxt(args.input)
+    dane = np.loadtxt(args.input, skiprows=1, delimiter=',', usecols=(6,7))
     if len(dane) == 0:
         print("Plik wejściowy jest pusty")
         exit()
     with open(args.input, 'r') as plik:
         lines = plik.readlines()
-        i = 0
+        i = 1
         wyniki = []
         while i < len(lines):
             f,l,h = [float(x) for x in lines[i].strip().split(',')[5:8]]
             wynik = transformacje.fl2pl1992(f,l,l0=radians(19), m0 = 0.9993)
-            wyniki.append(wynik[2:])
+            wyniki.append(wynik)
             i += 1
         print('FL2PL1992=',wyniki)   
         np.savetxt("PL1992.txt", wyniki)
@@ -359,23 +363,22 @@ if __name__ == "__main__":
     parser.add_argument('--input', type=str, default='dane.txt')
     parser.add_argument('--model', type=str, default="wgs84", help='Model elipsoidy:"wgs84", "grs80", "kras"')
     args = parser.parse_args()
-    FL = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(6,7))
+    
     
     transformacje = Transformacje()
    
-    dane = np.loadtxt(args.input)
+    dane = np.loadtxt(args.input, skiprows=1, delimiter=',', usecols=(6,7))
     if len(dane) == 0:
         print("Plik wejściowy jest pusty")
         exit()
     with open(args.input, 'r') as plik:
         lines = plik.readlines()
-        i = 0
+        i = 1
         wyniki = []
         while i < len(lines):
-            f,l,h = [float(x) for x in lines[i].strip().split()[5:8]]
+            f,l,h = [float(x) for x in lines[i].strip().split(',')[5:8]]
             wynik = transformacje.fl2pl2000(f,l, m0 = 0.999923)
-            wyniki.append(wynik[2:])
+            wyniki.append(wynik)
             i += 1
         print('FL2PL2000=',wyniki)    
         np.savetxt("PL2000.txt", wyniki) 
-
