@@ -127,7 +127,7 @@ class Transformacje:
         Z = (N + h - N * self.e2) * sin(f)
         return(X, Y, Z)
 
-    def fl2neu(self, X, Y, Z, X0, Y0, Z0):
+    def XYZ2neu(self, X, Y, Z, X0, Y0, Z0):
         """
         Funkcja przedstawia transformację współrzędnych geocentrycznych odbiornika (X, Y, Z)
         do układu topocentrycznego aby uzyskać współrzędne topocentryczne odbiornika.
@@ -263,14 +263,17 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     transformacje = Transformacje()
-    dane = np.loadtxt(args.input, skiprows=4, delimiter=',')
+    dane = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(0,1,2))
+    if len(dane) == 0:
+        print("Plik wejściowy jest pusty")
+        exit()
     wyniki = []
     with open(args.input, 'r') as plik:
         lines = plik.readlines()[4:]
         i = 0
         wyniki = []
         while i < len(lines):
-            X, Y, Z = [float(x) for x in lines[i].strip().split(',')]
+            X, Y, Z = [float(x) for x in lines[i].strip().split(',')[:3]]
             wynik = transformacje.xyz2flh(X, Y, Z, output='dec_degree')
             wyniki.append(wynik)
             i += 1
@@ -279,20 +282,22 @@ if __name__ == "__main__":
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', type=str, default='flh.txt')
+    parser.add_argument('--input', type=str, default='dane.txt')
     parser.add_argument('--model', type=str, default="wgs84", help='Model elipsoidy:"wgs84", "grs80", "kras"')
     args = parser.parse_args()
     
     transformacje = Transformacje()
 
-    dane = np.loadtxt(args.input)
-
+    dane = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(6,7,8))
+    if len(dane) == 0:
+        print("Plik wejściowy jest pusty")
+        exit()
     with open(args.input, 'r') as plik:
         lines = plik.readlines()
         i = 0
         wyniki = []
         while i < len(lines):
-            f, l, h = [float(x) for x in lines[i].strip().split()]
+            f, l, h = [float(x) for x in lines[i].strip().split(',')[5:]]
             wynik1 = transformacje.flh2xyz(f, l, h)
             wyniki.append(wynik1)
             i += 1
@@ -301,20 +306,47 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', type=str, default='flh.txt')
+    parser.add_argument('--input', type=str, default='dane.txt')
     parser.add_argument('--model', type=str, default="wgs84", help='Model elipsoidy:"wgs84", "grs80", "kras"')
-    FL = np.loadtxt(args.input, usecols=(0,1))
+    args = parser.parse_args()
+
+    transformacje=Transformacje()
+    dane = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(0,1,2,3,4,5))
+    if len(dane) == 0:
+        print("Plik wejściowy jest pusty")
+        exit()
+    with open(args.input, 'r') as plik:
+        lines = plik.readlines()
+        i = 1
+        wyniki = []
+        while i < len(lines):
+            X, Y, Z,X0,Y0,Z0 = [float(x) for x in lines[i].strip().split(',')[:6]]
+            wynik = transformacje.XYZ2neu(X,Y,Z,X0,Y0,Z0)
+            wyniki.append(wynik)
+            i += 1
+        print('XYZ2neu', wyniki)
+        np.savetxt("neu.txt", wyniki)
+ 
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', type=str, default='dane.txt')
+    parser.add_argument('--model', type=str, default="wgs84", help='Model elipsoidy:"wgs84", "grs80", "kras"')
+    args = parser.parse_args()
+    FL = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(6,7))
     
     transformacje = Transformacje()
 
     dane = np.loadtxt(args.input)
-    
+    if len(dane) == 0:
+        print("Plik wejściowy jest pusty")
+        exit()
     with open(args.input, 'r') as plik:
         lines = plik.readlines()
         i = 0
         wyniki = []
         while i < len(lines):
-            f,l,h = [float(x) for x in lines[i].strip().split()]
+            f,l,h = [float(x) for x in lines[i].strip().split(',')[5:8]]
             wynik = transformacje.fl2pl1992(f,l,l0=radians(19), m0 = 0.9993)
             wyniki.append(wynik[2:])
             i += 1
@@ -324,20 +356,23 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', type=str, default='flh.txt')
+    parser.add_argument('--input', type=str, default='dane.txt')
     parser.add_argument('--model', type=str, default="wgs84", help='Model elipsoidy:"wgs84", "grs80", "kras"')
     args = parser.parse_args()
-    FL = np.loadtxt(args.input, usecols=(0,1))
+    FL = np.loadtxt(args.input, skiprows=4, delimiter=',', usecols=(6,7))
     
     transformacje = Transformacje()
    
     dane = np.loadtxt(args.input)
+    if len(dane) == 0:
+        print("Plik wejściowy jest pusty")
+        exit()
     with open(args.input, 'r') as plik:
         lines = plik.readlines()
         i = 0
         wyniki = []
         while i < len(lines):
-            f,l,h = [float(x) for x in lines[i].strip().split()]
+            f,l,h = [float(x) for x in lines[i].strip().split()[5:8]]
             wynik = transformacje.fl2pl2000(f,l, m0 = 0.999923)
             wyniki.append(wynik[2:])
             i += 1
