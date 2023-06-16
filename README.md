@@ -37,6 +37,10 @@ Jednocześnie kod "czuwa" nad wybranej nieistniejącej w kontekście naszego kod
 
 Przesyłam jeszcze przykładowe użycia kodu: 
 
+![image](https://github.com/Em2510/Projekt_1/assets/129061319/974a9b7d-6560-4146-88b8-b7fc7e75b7a7)
+
+
+![image](https://github.com/Em2510/Projekt_1/assets/129061319/a22b218a-40f5-45b4-aead-174055c487ae)
 
 
 
