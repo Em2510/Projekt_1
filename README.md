@@ -42,5 +42,6 @@ Przesyłam jeszcze przykładowe użycia kodu:
 
 ![image](https://github.com/Em2510/Projekt_1/assets/129061319/a22b218a-40f5-45b4-aead-174055c487ae)
 
-
+ZNANE BŁĘDY: 
+NIE ZALECAMY STOSOWANIA ELIPSOIDY KRASOWSKIEGO, PONIEWAŻ PODAJE ONA BŁĘDNE WYNIKI. 
 
