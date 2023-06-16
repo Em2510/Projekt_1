@@ -44,4 +44,5 @@ Przesyłam jeszcze przykładowe użycia kodu:
 
 ZNANE BŁĘDY: 
 NIE ZALECAMY STOSOWANIA ELIPSOIDY KRASOWSKIEGO, PONIEWAŻ PODAJE ONA BŁĘDNE WYNIKI. 
+W przypadku błędów związanych z wierszem poleceń, być może wystarczy zainstalować "python -m pip install numpy bądź "python -m pip install scipy".
 
