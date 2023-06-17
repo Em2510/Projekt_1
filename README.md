@@ -47,11 +47,13 @@ Jednocześnie kod "czuwa" nad wybranej nieistniejącej w kontekście naszego kod
 ![image](https://github.com/Em2510/Projekt_1/assets/129061319/dceea54f-4b03-4ff9-8032-01e800511117)
 
 
-Przesyłam jeszcze przykładowe użycia kodu: 
+Przesyłam jeszcze przykładowe użycia kodu. 
 Funkcja przedstawia transformację współrzędnych geocentrycznych odbiornika (X, Y, Z) do układu topocentrycznego aby uzyskać współrzędne topocentryczne odbiornika. Zadanie wykorzystuje także współrzędne geocentryczne anteny (X0, Y0, Z0).
 
 ![image](https://github.com/Em2510/Projekt_1/assets/129061319/974a9b7d-6560-4146-88b8-b7fc7e75b7a7)
 
+
+Kolejny przykład:
 
 ![image](https://github.com/Em2510/Projekt_1/assets/129061319/a22b218a-40f5-45b4-aead-174055c487ae)
 
