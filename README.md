@@ -12,16 +12,16 @@ Trzansformacja współrzednych geodezyjnych na współrzedne w układzie 2000
 Transformacja współrzędnych geodezyjnych na współrzędne w układzie 1992
 
 JEDNOSTKI 
--Współrzędna X punktu wyrażona w metrach
--Współrzędna Y punktu wyrażona w metrach
--Współrzędna Z punktu wyrażona w metrach
-Współrzędna X0 odbiornika wyrażona w metrach
-Współrzędna Y0 odbiornika wyrażona w metrach
-Współrzędna Z0 odbiornika wyrażona w metrach
--Współrzędna Fi punktu wyrażona w stopniach
--Współrzędna Lambda punktu wyrażona w stopniach
--Współrzędna h punktu wyrażona w metrach
--Południk osiowy strefy odwzorowawczej wyrażony w stopniach
+- Współrzędna X punktu wyrażona w metrach
+- Współrzędna Y punktu wyrażona w metrach
+- Współrzędna Z punktu wyrażona w metrach
+- Współrzędna X0 odbiornika wyrażona w metrach
+- Współrzędna Y0 odbiornika wyrażona w metrach
+- Współrzędna Z0 odbiornika wyrażona w metrach
+- Współrzędna Fi punktu wyrażona w stopniach
+- Współrzędna Lambda punktu wyrażona w stopniach
+- Współrzędna h punktu wyrażona w metrach
+- Południk osiowy strefy odwzorowawczej wyrażony w stopniach
 
 * Transformacje w programie mogą zostac wykonane w oparciu na elipsoidy wgs84, grs80 albo Krasowskiego(kras)
 
