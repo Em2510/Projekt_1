@@ -48,7 +48,7 @@ Jednocześnie kod "czuwa" nad wybranej nieistniejącej w kontekście naszego kod
 
 
 Przesyłam jeszcze przykładowe użycia kodu. 
-Funkcja przedstawia transformację współrzędnych geocentrycznych odbiornika (X, Y, Z) do układu topocentrycznego aby uzyskać współrzędne topocentryczne odbiornika. Zadanie wykorzystuje także współrzędne geocentryczne anteny (X0, Y0, Z0).
+Funkcja przedstawia transformację współrzędnych geocentrycznych odbiornika (X, Y, Z) do układu topocentrycznego aby uzyskać współrzędne topocentryczne odbiornika. Zadanie wykorzystuje także współrzędne geocentryczne anteny (X0, Y0, Z0). W przypadku tej transformacji istnieją dwa punkty wejściowe, ponieważ jest to przekształcenie dwupunktowe
 
 ![image](https://github.com/Em2510/Projekt_1/assets/129061319/974a9b7d-6560-4146-88b8-b7fc7e75b7a7)
 
