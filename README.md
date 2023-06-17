@@ -25,9 +25,10 @@ JEDNOSTKI
 - Współrzędna N punktu wyrażona w metrach
 - Współrzędna E punktu wyrażona w metrach
 - Współrzędna U punktu wyrażona w metrach
-
-Wyniki będą analogicznie w tych samych jednostkach. 
-
+- Współrzędna X punktu w układzie 2000 wyrażona w metrach 
+- Współrzędna Y punktu w układzie 2000 wyrażona w metrach
+- Współrzędna X punktu w układzie 1992 wyrażona w metrach 
+- Współrzędna Y punktu w układzie 1992 wyrażona w metrach
 
 * Transformacje w programie mogą zostac wykonane w oparciu na elipsoidy wgs84, grs80 albo Krasowskiego(kras)
 
