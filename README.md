@@ -23,6 +23,9 @@ JEDNOSTKI
 - Współrzędna h punktu wyrażona w metrach
 - Południk osiowy strefy odwzorowawczej wyrażony w stopniach
 
+Wyniki będą analogicznie w tych samych jednostkach. 
+
+
 * Transformacje w programie mogą zostac wykonane w oparciu na elipsoidy wgs84, grs80 albo Krasowskiego(kras)
 
 2. Aby program działał poprawnie, należy zainstalować python w wersji co najmniej 3.9 oraz biblioteki numpy, argparse oraz scipy.
