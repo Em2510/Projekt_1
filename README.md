@@ -22,6 +22,9 @@ JEDNOSTKI
 - Współrzędna Lambda punktu wyrażona w stopniach
 - Współrzędna h punktu wyrażona w metrach
 - Południk osiowy strefy odwzorowawczej wyrażony w stopniach
+- Współrzędna N punktu wyrażona w metrach
+- Współrzędna E punktu wyrażona w metrach
+- Współrzędna U punktu wyrażona w metrach
 
 Wyniki będą analogicznie w tych samych jednostkach. 
 
