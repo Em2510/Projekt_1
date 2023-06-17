@@ -11,6 +11,18 @@ Trzansformacja współrzednych geodezyjnych na współrzedne w układzie 2000
 - BL -> 1992
 Transformacja współrzędnych geodezyjnych na współrzędne w układzie 1992
 
+JEDNOSTKI 
+-Współrzędna X punktu wyrażona w metrach
+-Współrzędna Y punktu wyrażona w metrach
+-Współrzędna Z punktu wyrażona w metrach
+Współrzędna X0 odbiornika wyrażona w metrach
+Współrzędna Y0 odbiornika wyrażona w metrach
+Współrzędna Z0 odbiornika wyrażona w metrach
+-Współrzędna Fi punktu wyrażona w stopniach
+-Współrzędna Lambda punktu wyrażona w stopniach
+-Współrzędna h punktu wyrażona w metrach
+-Południk osiowy strefy odwzorowawczej wyrażony w stopniach
+
 * Transformacje w programie mogą zostac wykonane w oparciu na elipsoidy wgs84, grs80 albo Krasowskiego(kras)
 
 2. Aby program działał poprawnie, należy zainstalować python w wersji co najmniej 3.9 oraz biblioteki numpy, argparse oraz scipy.
@@ -22,7 +34,7 @@ Projekt został rozdzielony na dwa pliku w celu przejrzystości kodu. Program sk
 
 
 
-Program wykonuje wybraną z powyższych transformacji dla dowolnej wybranej elispoidy (wgs84,grs80 lub Krasowskiego). Żeby wykorzystać możliwości programu trzeba przede wszystkich wpisać wymagane dane do pliku tekstowego. Gdy już to zrobimy, upewniamy się, że wszystkie pliki znajdują się w jednym folderze i otwieramy wiersz poleceń. Piszemy "cd"  i wklejamy ścieżkę do naszego folderu z plikami, a następnie wpisujemy python kod.py --transform  --model , po "transform" wpisujemy wybraną przez nas transformację, a po "model" wybraną elipsoidę. Dane powinny zostać podane w metrach badź stopniach dzisiętnych i analogicznie wyniki będą w takich samych jednostkach. Poglądowo może to wygladać np. tak: 
+Program wykonuje wybraną z powyższych transformacji dla dowolnej wybranej elispoidy (wgs84,grs80 lub Krasowskiego). Żeby wykorzystać możliwości programu trzeba przede wszystkich wpisać wymagane dane do pliku tekstowego. Gdy już to zrobimy, upewniamy się, że wszystkie pliki znajdują się w jednym folderze i otwieramy wiersz poleceń. Piszemy "cd"  i wklejamy ścieżkę do naszego folderu z plikami, a następnie wpisujemy python kod.py --transform  --model , po "transform" wpisujemy wybraną przez nas transformację, a po "model" wybraną elipsoidę. Poglądowo może to wygladać np. tak: 
 
 ![image](https://github.com/Em2510/Projekt_1/assets/129061319/d67fc9be-cdba-4199-9404-8db9cd056509)
 
